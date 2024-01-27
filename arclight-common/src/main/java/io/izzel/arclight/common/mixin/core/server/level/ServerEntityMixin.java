@@ -265,7 +265,7 @@ public abstract class ServerEntityMixin implements ServerEntityBridge {
         if (this.entity instanceof LivingEntity livingEntity) {
             Collection<AttributeInstance> collection = livingEntity.getAttributes().getSyncableAttributes();
             if (this.entity.getId() == player.getId()) {
-                ((ServerPlayerEntityBridge) this.entity).bridge$getBukkitEntity().injectScaledMaxHealth(collection, false);
+               // ((ServerPlayerEntityBridge) this.entity).bridge$getBukkitEntity().injectScaledMaxHealth(collection, false);
             }
             if (!collection.isEmpty()) {
                 consumer.accept(new ClientboundUpdateAttributesPacket(this.entity.getId(), collection));
@@ -309,7 +309,7 @@ public abstract class ServerEntityMixin implements ServerEntityBridge {
     @Inject(method = "sendDirtyEntityData", locals = LocalCapture.CAPTURE_FAILHARD, at = @At(value = "INVOKE", ordinal = 1, target = "Lnet/minecraft/server/level/ServerEntity;broadcastAndSend(Lnet/minecraft/network/protocol/Packet;)V"))
     private void arclight$sendScaledHealth(CallbackInfo ci, SynchedEntityData entitydatamanager, List<SynchedEntityData.DataValue<?>> list, Set<AttributeInstance> set) {
         if (this.entity instanceof ServerPlayerEntityBridge player) {
-            player.bridge$getBukkitEntity().injectScaledMaxHealth(set, false);
+          //  player.bridge$getBukkitEntity().injectScaledMaxHealth(set, false);
         }
     }
 }
